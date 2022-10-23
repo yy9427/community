@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
-    <title>牛客网-首页</title>
+    <title>小小树洞-首页</title>
 </head>
 <body>
 <div class="nk-container">
     <!-- 头部 -->
-    <header class="bg-dark sticky-top">
+    <header class="bg-dark sticky-top" th:fragment="header">
         <div class="container">
             <!-- 导航 -->
             <nav class="navbar navbar-expand-lg navbar-dark">
@@ -27,17 +27,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" href="index.html">首页</a>
+                            <a class="nav-link" th:href="@{/index}">首页</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
                             <a class="nav-link position-relative" href="site/letter.html">消息<span
                                     class="badge badge-danger">12</span></a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" href="site/register.html">注册</a>
+                            <a class="nav-link" th:href="@{/register}">注册</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" href="site/login.html">登录</a>
+                            <a class="nav-link" th:href="@{/login}">登录</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -160,14 +160,10 @@
                     </li>
                     <li th:class="|page-item ${page.current==1?'disabled':''}|">
                         <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
-
-
                     <li th:class="|page-item ${i==page.current?'active':''}|"
                         th:each="i:${#numbers.sequence(page.from,page.to)}">
                         <a class="page-link" href="#" th:text="${i}">1</a>
                     </li>
-
-
                     <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
                         <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
                     </li>
@@ -221,13 +217,13 @@
                         <div class="col">
                             <ul class="nav btn-group-vertical company-info">
                                 <li class="nav-item text-white-50">
-                                    公司地址：北京市朝阳区大屯路东金泉时代3-2708北京牛客科技有限公司
+                                    公司地址：小小树洞科技有限公司
                                 </li>
                                 <li class="nav-item text-white-50">
-                                    联系方式：010-60728802(电话)&nbsp;&nbsp;&nbsp;&nbsp;admin@nowcoder.com
+                                    联系方式：010-123456789(电话)&nbsp;&nbsp;&nbsp;&nbsp;admin@xiaoxiaoshudong.com
                                 </li>
                                 <li class="nav-item text-white-50">
-                                    牛客科技©2018 All rights reserved
+                                    树洞科技©2022 All rights reserved
                                 </li>
                                 <li class="nav-item text-white-50">
                                     京ICP备14055008号-4 &nbsp;&nbsp;&nbsp;&nbsp;
