@@ -1,5 +1,6 @@
 package com.community.controller;
 
+import com.community.annotataion.LoginRequired;
 import com.community.entity.User;
 import com.community.service.UserService;
 import com.community.util.CommunityUtil;
@@ -46,37 +47,43 @@ public class UserController {
     private HostHolder hostHolder;
 
     //跳转到用户账号设置界面
+    @LoginRequired
     @GetMapping("/setting")
     public String getSettingPage() {
         return "/site/setting";
     }
 
-    //跳转到用户登录后才出现的消息-朋友私信界面
 
+    //跳转到用户登录后才出现的消息-朋友私信界面
+    @LoginRequired
     @GetMapping("/letter")
     public String getLetterPage() {
         return "/site/letter";
     }
-    //跳转到用户登录后才出现的消息-系统通知界面
 
+    //跳转到用户登录后才出现的消息-系统通知界面
+    @LoginRequired
     @GetMapping("/notice")
     public String getNoticePage() {
         return "/site/notice";
     }
 
     //跳转到用户个人主页-个人信息界面
+    @LoginRequired
     @GetMapping("/profile")
     public String getProfilePage() {
         return "/site/profile";
     }
 
     //跳转到用户登录后才出现的消息-我的帖子界面
+    @LoginRequired
     @GetMapping("/my-post")
     public String getMyPostPage() {
         return "/site/my-post";
     }
 
     //跳转到用户登录后才出现的消息-我的回复界面
+    @LoginRequired
     @GetMapping("/my-reply")
     public String getMyReplyPage() {
         return "/site/my-reply";
@@ -141,6 +148,7 @@ public class UserController {
     }
 
     //修改用户密码
+    @LoginRequired
     @PostMapping("/setting")
     public String updatePwd(Model model, String password, String newPassword, String confirmPassword) {
         if (StringUtils.isNullOrEmpty(password)) {
