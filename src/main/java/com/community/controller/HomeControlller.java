@@ -23,7 +23,6 @@ public class HomeControlller {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/index")
     public String getIndexPage(Model model, Page page) {
         //方法调用前，SpringMVC会自动实例化model和page，并将page注入model

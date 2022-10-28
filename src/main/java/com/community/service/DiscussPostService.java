@@ -2,8 +2,10 @@ package com.community.service;
 
 import com.community.mapper.DiscussPostMapper;
 import com.community.entity.DiscussPost;
+import com.community.util.SensitiveFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.HtmlUtils;
 
 import java.util.List;
 
@@ -12,6 +14,8 @@ public class DiscussPostService {
 
     @Autowired
     private DiscussPostMapper discussPostMapper;
+    @Autowired
+    private SensitiveFilter sensitiveFilter;
 
 
     //查询评论信息
@@ -22,6 +26,19 @@ public class DiscussPostService {
     //通过用户id查询信息条数，没有输入id则全部查询
     public int findDiscussPostRows(int userId) {
         return discussPostMapper.selectDiscussPostRows(userId);
+    }
+
+    public int addDiscussPost(DiscussPost post) {
+        if (post == null) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+        //转义HTML标记
+        post.setTitle(HtmlUtils.htmlEscape(post.getTitle()));
+        post.setContent(HtmlUtils.htmlEscape(post.getContent()));
+        //过滤敏感词
+        post.setTitle(sensitiveFilter.filter(post.getTitle()));
+        post.setContent(sensitiveFilter.filter(post.getContent()));
+        return discussPostMapper.insertDiscussPost(post);
     }
 
 

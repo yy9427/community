@@ -4,10 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.community.mapper.DiscussPostMapper">
+    <sql id="selectFields">
+        id
+        ,user_id,title,content,type,status,create_time,comment_count,score
+    </sql>
+    <sql id="insertFields">
+        user_id
+        ,title,content,type,status,create_time,comment_count,score
+    </sql>
+
+
+    <insert id="insertDiscussPost" parameterType="DiscussPost">
+        insert into discuss_post(<include refid="insertFields"></include>)
+        values (#{userId},#{title},#{content},#{type},#{status},#{createTime},#{commentCount},#{score})
+    </insert>
 
 
     <select id="selectDiscussPosts" resultType="com.community.entity.DiscussPost">
-        select *
+        select
+        <include refid="selectFields"></include>
         from discuss_post
         where status!=2
         <if test="userId!=0">
