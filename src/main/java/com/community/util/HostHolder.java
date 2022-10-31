@@ -17,7 +17,7 @@ public class HostHolder {
         return users.get();
     }
 
-    public void clear(){
+    public void clear() {
         users.remove();
     }
 

@@ -45,5 +45,10 @@ public class DiscussPostService {
         return discussPostMapper.selectDiscussPostDetails(id);
     }
 
+    //更新帖子的回复的数量
+    public int updateCommentCount(int id, int commentCount) {
+        return discussPostMapper.updateCommentCount(id, commentCount);
+    }
+
 
 }
