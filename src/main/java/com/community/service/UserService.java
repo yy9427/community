@@ -162,7 +162,6 @@ public class UserService implements CommunityConstant {
     }
 
 
-
     //修改用户密码
     public Map<String, Object> updatePassword(String password, String newPassword, int id) {
         HashMap<String, Object> map = new HashMap<>();
@@ -178,6 +177,11 @@ public class UserService implements CommunityConstant {
             userMapper.updatePassword(id, newPassword);
         }
         return map;
+    }
+
+    //根据用户名查询用户id
+    public User findUserByName(String username) {
+        return userMapper.selectByName(username);
     }
 
 }
